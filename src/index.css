@@ -1,0 +1,285 @@
+:root {
+  /* Color Palette - Light Mode */
+  --primary-hue: 250;
+  --accent-hue: 35;
+  
+  --primary: hsl(var(--primary-hue), 85%, 60%);
+  --primary-hover: hsl(var(--primary-hue), 85%, 50%);
+  --primary-light: hsl(var(--primary-hue), 85%, 95%);
+  --primary-dark: hsl(var(--primary-hue), 85%, 30%);
+  
+  --accent: hsl(var(--accent-hue), 100%, 55%);
+  --accent-hover: hsl(var(--accent-hue), 100%, 45%);
+  
+  --bg-main: hsl(var(--primary-hue), 20%, 98%);
+  --bg-card: hsla(0, 0%, 100%, 0.8);
+  --bg-modal: hsla(0, 0%, 100%, 0.95);
+  
+  --text-main: hsl(var(--primary-hue), 20%, 25%);
+  --text-title: hsl(var(--primary-hue), 30%, 15%);
+  --text-muted: hsl(var(--primary-hue), 15%, 50%);
+  
+  --border: hsl(var(--primary-hue), 20%, 90%);
+  --border-focus: hsl(var(--primary-hue), 85%, 70%);
+  
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 10px 20px -5px rgba(100, 90, 150, 0.08), 0 4px 6px -2px rgba(100, 90, 150, 0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(100, 90, 150, 0.12), 0 10px 10px -5px rgba(100, 90, 150, 0.06);
+  --shadow-primary: 0 8px 16px -4px hsla(var(--primary-hue), 85%, 60%, 0.25);
+  
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-blur: blur(12px);
+
+  /* Fonts */
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: hsl(var(--primary-hue), 25%, 8%);
+    --bg-card: hsla(var(--primary-hue), 20%, 12%, 0.7);
+    --bg-modal: hsla(var(--primary-hue), 20%, 10%, 0.95);
+    
+    --text-main: hsl(var(--primary-hue), 15%, 75%);
+    --text-title: hsl(var(--primary-hue), 10%, 95%);
+    --text-muted: hsl(var(--primary-hue), 10%, 55%);
+    
+    --primary-light: hsl(var(--primary-hue), 30%, 15%);
+    --primary-dark: hsl(var(--primary-hue), 80%, 75%);
+    
+    --border: hsl(var(--primary-hue), 20%, 18%);
+    --border-focus: hsl(var(--primary-hue), 70%, 50%);
+    
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 10px 20px -5px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+    --shadow-primary: 0 8px 16px -4px hsla(var(--primary-hue), 85%, 60%, 0.15);
+    
+    --glass-bg: rgba(20, 18, 30, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.05);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
+}
+
+/* App container */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grid & Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header & Nav */
+.header-glass {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+
+/* Form Styles */
+input, textarea, select {
+  font-family: var(--font-main);
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+  color: var(--text-title);
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px hsla(var(--primary-hue), 85%, 60%, 0.15);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-title);
+  font-size: 0.9rem;
+}
+
+/* Buttons */
+.btn {
+  font-family: var(--font-main);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.btn-secondary:hover {
+  background-color: hsla(var(--primary-hue), 85%, 60%, 0.15);
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  background-color: hsl(0, 85%, 95%);
+  color: hsl(0, 85%, 45%);
+}
+
+.btn-danger:hover {
+  background-color: hsl(0, 85%, 90%);
+  color: hsl(0, 85%, 40%);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  background-color: var(--border);
+  color: var(--text-title);
+}
+
+/* Card Styles */
+.card-glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.card-glass:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-focus);
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: var(--bg-modal);
+  border: 1px solid var(--border);
+  width: 90%;
+  max-width: 550px;
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
